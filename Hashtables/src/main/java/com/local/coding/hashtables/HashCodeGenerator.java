@@ -7,9 +7,9 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class Test {
+public class HashCodeGenerator {
 
-	public static void main(String[] args) throws NoSuchAlgorithmException, IOException {
+	public static BigInteger generate(final SomeObject someObject) throws NoSuchAlgorithmException, IOException {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		DataOutputStream dos = new DataOutputStream(baos);
 
@@ -28,12 +28,13 @@ public class Test {
 			BigInteger testObjectHash = new BigInteger(hashBytes);
 
 			System.out.println("Hash " + testObjectHash);
+			return testObjectHash;
 		} finally {
 			dos.close();
 		}
 	}
 
-	private static class SomeObject {
+	static class SomeObject {
 		private int count = 200;
 		private long product = 1235134123l;
 		private double stdDev = 12343521.456d;
